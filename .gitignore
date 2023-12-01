@@ -1,5 +1,7 @@
 1mio-raw.csv
 ## Core latex/pdflatex auxiliary files:
+obj
+bin
 *.txt
 *.run
 *.png
