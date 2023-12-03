@@ -27,7 +27,7 @@ let partTwo (filename : string) : int =
             List.filter (fun (a,b) -> a = b) (List.allPairs (getSubStrings acc) numbers)
             |> List.map fst
         match matches, cList with
-        | x::xs::xss, _ -> failwith "More than one match. Should not be possible."
+        | _::_::_, _ -> failwith "More than one match. Should not be possible."
         | [], c::cs -> getNums (acc + string c) cs
         | [x], cs -> x :: getNums (acc[1..]) cs
         | _, [] -> []
