@@ -33,7 +33,6 @@ type Hand () =
 // Hand class for part 1
 type Hand1 (cards : list<char>) =
     inherit Hand ()
-
     let cardMap (cardChar : char) : int =
         match cardChar with
         | 'A' -> 14
@@ -125,19 +124,11 @@ let parseFile2 =
 
 
 // Having implemented the IComparable interface, all that's left to do is sort the list
-let partOne (allHands : list<Hand1 * int>) =
+let partTwo (allHands : list<'a * int>) =
     allHands
     |> List.sortBy fst
     |> List.mapi (fun i x -> (i+1) * snd x)
     |> List.reduce (+)
-
-let partTwo (allHands : list<Hand2 * int>) =
-    allHands
-    |> List.sortBy fst
-    |> List.mapi (fun i x -> (i+1) * snd x)
-    |> List.reduce (+)
-
-
 
 let allHandsSimple1 = parseFile1 "../input_simple.txt"
 let allHands1 = parseFile1 "../input.txt"
@@ -145,8 +136,8 @@ let allHands1 = parseFile1 "../input.txt"
 let allHandsSimple2 = parseFile2 "../input_simple.txt"
 let allHands2 = parseFile2 "../input.txt"
 
-printfn "%A" <| partOne allHandsSimple1
-printfn "%A" <| partOne allHands1
+printfn "%A" <| partTwo allHandsSimple1
+printfn "%A" <| partTwo allHands1
 
 printfn "%A" <| partTwo allHandsSimple2
 printfn "%A" <| partTwo allHands2
