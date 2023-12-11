@@ -58,6 +58,7 @@ let rec helper
         printfn "%A" distArr
         failwith (sprintf "Pathing went wrong at %A" (x,y))
 
+// Gets the minimum distances to any point in the array, following the loop from the start
 let getDistArr (pipe : Pipe) =
     let startx, starty =
         pipe // Very cursed way of finding the start position
@@ -100,17 +101,17 @@ let partTwo (pipe : Pipe) =
             (Array2D.length1 distArr)
             (Array2D.length2 distArr)
             (fun i j -> if distArr[i,j] = -1 then Empty else pipe[i][j])
-    //distArr.iteri (fun i j elem -> if elem = -1 then cleanArr.[i,j] <- Empty else ())
 
     let mutable insideLoop = false
     let mutable innies = 0
     let mutable entrance = Empty
 
+    // Counts spaces by simply checking whether we have passed through a pipe
     cleanArr
     |> Array2D.iteri (fun i j x ->
                       match entrance, x with
                       | _, Empty ->
-                          if insideLoop then printfn "%A" (i,j); innies <- innies + 1 else ()
+                          if insideLoop then innies <- innies + 1 else ()
                       | _, NS ->
                           insideLoop <- not insideLoop
                       | _, EW | NE, NW | SE, SW -> ()
