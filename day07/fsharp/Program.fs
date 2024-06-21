@@ -53,6 +53,9 @@ type Hand1 (cards : list<char>) =
         | 1::xs    -> 1 // High card
         | _ -> failwith "Hands not in correct format"
 
+
+    member this.test() = 0
+
     override this.cards = cards |> List.map cardMap
 
     override this.handRank =
